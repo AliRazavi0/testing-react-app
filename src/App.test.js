@@ -2,11 +2,16 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import App from "./App";
 
+// setup test
+let container = null;
+beforeEach(() => {
+  //arange
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
 describe("App Component Test", () => {
   it("should display Hello Test", () => {
-    //arange
-    const container = document.createElement("div");
-    document.body.appendChild(container);
     //act
     act(() => {
       render(<App />, container);
@@ -14,9 +19,11 @@ describe("App Component Test", () => {
 
     //assert
     expect(container.textContent).toBe("Hello Test");
-
-    unmountComponentAtNode(container); // remove element dom
   });
+});
+
+afterEach(() => {
+  unmountComponentAtNode(container); // remove element dom
 });
 
 // ACT => Full Load Document
