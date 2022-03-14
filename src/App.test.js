@@ -11,14 +11,21 @@ beforeEach(() => {
 });
 
 describe("App Component Test", () => {
-  it("should display Hello Test", () => {
+  it("should display greating message", () => {
     //act
     act(() => {
       render(<App />, container);
     });
 
     //assert
-    expect(container.textContent).toBe("Hello Test");
+    expect(container.textContent).toBe("Hello ");
+  });
+
+  it("should display greating by name", () => {
+    act(() => {
+      render(<App name="Ali" />, container);
+      expect(container.textContent).toBe("Hello Ali");
+    });
   });
 });
 
