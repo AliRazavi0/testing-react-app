@@ -1,6 +1,6 @@
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import App from "./App";
+import Greatning from "./Greating";
 
 // setup test
 let container = null;
@@ -10,11 +10,11 @@ beforeEach(() => {
   document.body.appendChild(container);
 });
 
-describe("App Component Test", () => {
+describe("Greatning Component Test", () => {
   it("should display greating message", () => {
     //act
     act(() => {
-      render(<App />, container);
+      render(<Greatning />, container);
     });
 
     //assert
@@ -23,7 +23,7 @@ describe("App Component Test", () => {
 
   it("should display greating by name", () => {
     act(() => {
-      render(<App name="Ali" />, container);
+      render(<Greatning name="Ali" />, container);
       expect(container.textContent).toBe("Hello Ali");
     });
   });
