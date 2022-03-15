@@ -8,6 +8,7 @@ beforeEach(() => {
   //arange
   container = document.createElement("div");
   document.body.appendChild(container);
+  jest.useFakeTimers();
 });
 describe("Counter Component ", () => {
   it("should be  'Count' ziro", () => {
@@ -44,7 +45,20 @@ describe("Counter Component ", () => {
     });
     expect(countValue.textContent).toBe("-1");
   });
+
+  it("should be counter setCount period 5000 ms ", () => {
+    act(() => {
+      render(<Counter />, container);
+    });
+
+    const countValue = document.querySelector("h1");
+    act(() => {
+      jest.advanceTimersByTime(5000);
+    });
+    expect(countValue.textContent).toBe("1");
+  });
 });
 afterEach(() => {
+  jest.useRealTimers();
   unmountComponentAtNode(container); // remove element dom
 });
